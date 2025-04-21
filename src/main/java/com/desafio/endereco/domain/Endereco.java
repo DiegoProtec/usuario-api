@@ -24,7 +24,7 @@ public class Endereco extends PanacheEntityBase {
     @Column(nullable = false, length = 50)
     private String bairro;
     @Column(nullable = false, length = 50)
-    private String cidade;
+    private String localidade;
     @Column(nullable = false, length = 20)
     private String estado;
 
@@ -79,12 +79,12 @@ public class Endereco extends PanacheEntityBase {
         this.bairro = bairro;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getLocalidade() {
+        return localidade;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
     }
 
     public String getEstado() {

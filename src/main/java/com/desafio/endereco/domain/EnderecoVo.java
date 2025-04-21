@@ -26,9 +26,9 @@ public record EnderecoVo(
         @Size(min = 2, max = 50, message = "Bairro deve ter entre 2 e 50 caracteres")
         String bairro,
 
-        @NotBlank(message = "O cidade é obrigatório")
-        @Size(min = 2, max = 50, message = "Cidade deve ter entre 2 e 50 caracteres")
-        String cidade,
+        @NotBlank(message = "O localidade é obrigatório")
+        @Size(min = 2, max = 50, message = "Localidade deve ter entre 2 e 50 caracteres")
+        String localidade,
 
         @NotBlank(message = "O estado é obrigatório")
         @Size(min = 2, max = 50, message = "Estado deve ter entre 2 e 50 caracteres")
