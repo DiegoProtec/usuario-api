@@ -14,14 +14,24 @@ val quarkusPlatformVersion: String by project
 
 dependencies {
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
+    // Quarkus dependencies
     implementation("io.quarkus:quarkus-rest")
     implementation("io.quarkus:quarkus-rest-jackson")
     implementation("io.quarkus:quarkus-hibernate-orm-panache")
-    implementation("io.quarkus:quarkus-jdbc-mysql")
-    implementation("io.quarkus:quarkus-arc")
-    implementation("io.quarkus:quarkus-hibernate-orm")
+
+    // H2 Database
+    implementation("io.quarkus:quarkus-jdbc-h2")
+
+    // MapStruct dependencies
+    implementation("org.mapstruct:mapstruct:1.5.3.Final")
+    annotationProcessor("org.mapstruct:mapstruct-processor:1.5.3.Final")
+
+    // Test dependencies
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
+
+    // Validação Request
+    implementation("io.quarkus:quarkus-hibernate-validator")
 }
 
 group = "desafio.com"
