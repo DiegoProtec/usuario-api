@@ -10,8 +10,8 @@ on:
 
 env:
   DATASOURCE_PASSWORD: ${{ secrets.DATASOURCE_PASSWORD }}
-  ELASTIC_BEANSTALK_NAME: usuario-api
-  ELASTIC_BEANSTALK_ENV_NAME: usuario-api-env
+  ELASTIC_BEANSTALK_NAME: desafio-santander-usuario
+  ELASTIC_BEANSTALK_ENV_NAME: desafio-santander-usuario-env
 
 jobs:
   build:
