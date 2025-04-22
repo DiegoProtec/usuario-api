@@ -32,11 +32,14 @@ jobs:
       - name: Build
         run: ./gradlew build
 
+      - run: cd ${{ github.workspace }} && tree
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
 
     steps:
+      - run: cd ${{ github.workspace }} && tree
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
