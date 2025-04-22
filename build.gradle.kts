@@ -19,6 +19,9 @@ dependencies {
     implementation("io.quarkus:quarkus-rest-jackson")
     implementation("io.quarkus:quarkus-hibernate-orm-panache")
 
+    // Mysql
+    implementation("io.quarkus:quarkus-jdbc-mysql")
+
     // H2 Database
     implementation("io.quarkus:quarkus-jdbc-h2")
 
