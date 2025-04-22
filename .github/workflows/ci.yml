@@ -64,8 +64,8 @@ jobs:
           VERSION_LABEL=${{ github.run_id }}
           aws elasticbeanstalk create-application-version --application $ELASTIC_BEANSTALK_NAME --version-label $VERSION_LABEL --source-bundle S3Bucket="elasticbeanstalk-sa-east-1-${{ secrets.AWS_ACCOUNT_ID }}",S3Key="artifact/usuario/app.jar"
           aws elasticbeanstalk update-environment --environment-name $ELASTIC_BEANSTALK_ENV_NAME --version-label $VERSION_LABEL
+          aws elasticbeanstalk wait environment-updated --application-name $ELASTIC_BEANSTALK_NAME --environment-name $ELASTIC_BEANSTALK_ENV_NAME
 
       - name: Logs
         run: |
-          aws elasticbeanstalk wait environment-updated --application-name $ELASTIC_BEANSTALK_NAME --environment-name $ELASTIC_BEANSTALK_ENV_NAME
-          aws elasticbeanstalk request-logs --environment-name $ELASTIC_BEANSTALK_ENV_NAME
+          aws elasticbeanstalk describe-environments --environment-names $ELASTIC_BEANSTALK_ENV_NAME
