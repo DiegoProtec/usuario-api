@@ -8,6 +8,11 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  DATASOURCE_PASSWORD: ${{ secrets.DATASOURCE_PASSWORD }}
+  ELASTIC_BEANSTALK_NAME: santander-usuario
+  ELASTIC_BEANSTALK_ENV_NAME: santander-usuario-env
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,3 +31,23 @@ jobs:
 
       - name: Build
         run: ./gradlew build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - uses: actions/download-artifact@v4.1.7
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: sa-east-1
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Deploy
+        run: |
+            aws s3 cp "deploy-files/${{github.run_id}}.zip" s3://elasticbeanstalk-sa-east-1-${{ secrets.AWS_ACCOUNT_ID }}/artifact/desafio-santander-usuario/
+            aws elasticbeanstalk create-application-version --application-name $ELASTIC_BEANSTALK_NAME --version-label ${{github.run_id}} --description ${{github.run_id}} --source-bundle S3Bucket="elasticbeanstalk-sa-east-1-${{ secrets.AWS_ACCOUNT_ID }}",S3Key="artifact/desafio-santander-usuario/${{github.run_id}}.zip"
+            aws elasticbeanstalk update-environment --application-name $ELASTIC_BEANSTALK_NAME --environment-name $ELASTIC_BEANSTALK_ENV_NAME --version-label ${{github.run_id}}
+            aws elasticbeanstalk wait environment-updated --application-name $ELASTIC_BEANSTALK_NAME --environment-name $ELASTIC_BEANSTALK_ENV_NAME
