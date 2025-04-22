@@ -48,7 +48,7 @@ jobs:
         with:
           path: java-app
 
-      - run: ls -R java-app
+      - run: cd java-app && tree
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
