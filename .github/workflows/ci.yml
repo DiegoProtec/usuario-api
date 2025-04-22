@@ -10,6 +10,7 @@ on:
 
 env:
   DATASOURCE_PASSWORD: ${{ secrets.DATASOURCE_PASSWORD }}
+  ELASTIC_REGION: sa-east-1
   ELASTIC_BEANSTALK_NAME: desafio-santander-usuario
   ELASTIC_BEANSTALK_ENV_NAME: desafio-santander-usuario-env
 
@@ -51,13 +52,13 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: sa-east-1
+          aws-region: $ELASTIC_REGION
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Deploy
         run: |
-          aws s3 cp "quarkus-run.jar" s3://elasticbeanstalk-sa-east-1-${{ secrets.AWS_ACCOUNT_ID }}/artifact/santander-usuario/
-          aws elasticbeanstalk create-application-version --application-name $ELASTIC_BEANSTALK_NAME --version-label ${{github.run_id}} --description ${{github.run_id}} --source-bundle S3Bucket="elasticbeanstalk-sa-east-1-${{ secrets.AWS_ACCOUNT_ID }}",S3Key="artifact/santander-usuario/quarkus-run.jar"
+          aws s3 cp "quarkus-run.jar" s3://elasticbeanstalk-$ELASTIC_REGION-${{ secrets.AWS_ACCOUNT_ID }}/artifact/$ELASTIC_BEANSTALK_NAME/
+          aws elasticbeanstalk create-application-version --application-name $ELASTIC_BEANSTALK_NAME --version-label ${{github.run_id}} --description ${{github.run_id}} --source-bundle S3Bucket="elasticbeanstalk-$ELASTIC_REGION-${{ secrets.AWS_ACCOUNT_ID }}",S3Key="artifact/$ELASTIC_BEANSTALK_NAME/quarkus-run.jar"
           aws elasticbeanstalk update-environment --application-name $ELASTIC_BEANSTALK_NAME --environment-name $ELASTIC_BEANSTALK_ENV_NAME --version-label ${{github.run_id}}
           aws elasticbeanstalk wait environment-updated --application-name $ELASTIC_BEANSTALK_NAME --environment-name $ELASTIC_BEANSTALK_ENV_NAME
