@@ -10,8 +10,8 @@ on:
 
 env:
   VERSION_LABEL: ${{ github.sha }}
-  ELASTIC_BEANSTALK_NAME: Usuario Api
-  ELASTIC_BEANSTALK_ENV_NAME: UsuarioApi-env
+  ELASTIC_BEANSTALK_NAME: 'Usuario Api'
+  ELASTIC_BEANSTALK_ENV_NAME: 'UsuarioApi-env'
   DATASOURCE_PASSWORD: ${{ secrets.DATASOURCE_PASSWORD }}
 
 jobs:
