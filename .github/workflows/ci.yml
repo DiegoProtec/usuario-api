@@ -10,8 +10,8 @@ on:
 
 env:
   VERSION_LABEL: ${{ github.sha }}
-  ELASTIC_BEANSTALK_NAME: desafio-santander-usuario
-  ELASTIC_BEANSTALK_ENV_NAME: desafio-santander-usuario-env
+  ELASTIC_BEANSTALK_NAME: Usuario Api
+  ELASTIC_BEANSTALK_ENV_NAME: UsuarioApi-env
   DATASOURCE_PASSWORD: ${{ secrets.DATASOURCE_PASSWORD }}
 
 jobs:
@@ -61,8 +61,11 @@ jobs:
           aws s3 cp "quarkus-run.jar" s3://elasticbeanstalk-sa-east-1-${{ secrets.AWS_ACCOUNT_ID }}/artifact/usuario/app.jar
 
       - name: Criar aplicação
-        run: |
-          aws elasticbeanstalk create-application-version --application-name $ELASTIC_BEANSTALK_NAME --version-label $VERSION_LABEL --description $VERSION_LABEL --source-bundle S3Bucket="elasticbeanstalk-sa-east-1-${{ secrets.AWS_ACCOUNT_ID }}",S3Key="artifact/usuario/app.jar"
+        run: >
+          aws elasticbeanstalk create-application-version --application-name $ELASTIC_BEANSTALK_NAME 
+          --version-label $VERSION_LABEL --version $VERSION_LABEL --description $VERSION_LABEL 
+          --source-bundle S3Bucket="elasticbeanstalk-sa-east-1-${{ secrets.AWS_ACCOUNT_ID }}",S3Key="artifact/usuario/app.jar" 
+          --auto-create-application
 
       - name: Implantar aplicação
         run: |
