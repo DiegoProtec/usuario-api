@@ -32,7 +32,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - name: Prepara camada JDK 21
+      - name: Prepara JDK 21
         uses: actions/setup-java@v4
         with:
           java-version: 21
@@ -70,7 +70,7 @@ jobs:
         with:
           aws-region: ${{ env.REGIAO }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} ${{ env.VERSION_LABEL }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Upload do artefato para o Artifact no S3
         run: |
