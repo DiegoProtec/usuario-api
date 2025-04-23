@@ -43,7 +43,7 @@ jobs:
       - name: Prepara artefato de deploy
         run: |
           # Cria o arquivo ZIP com os arquivos necessários
-          zip -r deploy.zip build/quarkus-app/quarkus-run.jar Procfile deploy/
+          zip -r deploy.zip build Procfile deploy/
           chmod -R 755 deploy.zip
 
       - name: Upload do artefato
