@@ -81,7 +81,7 @@ jobs:
         run: >
           aws elasticbeanstalk create-application-version
           --application-name ${{ env.ELASTIC_BEANSTALK_NAME }}
-          --source-bundle S3Bucket="${{ env.S3_ELASTIC_BEANSTALK }}",S3Key="${{ env.ARTIFACT_FULL_PATH }}"
+          --source-bundle S3Bucket="${{ env.ELASTIC_BEANSTALK }}",S3Key="${{ env.ARTIFACT_FULL_PATH }}"
           --version-label ${{ env.VERSION_LABEL }}
 
       - name: Implantar a nova versão
