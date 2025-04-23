@@ -10,8 +10,8 @@ on:
 
 env:
   REGIAO: sa-east-1
-  ARTIFACT_PATH: artifact/usuario-api
   ARTIFACT_FILE: deploy.zip
+  ARTIFACT_PATH: artifact/usuario-api/
   ARTIFACT_FULL_PATH: artifact/usuario-api/deploy.zip
 
 jobs:
@@ -58,7 +58,7 @@ jobs:
       VERSION_LABEL: ${{ github.sha }}
       ELASTIC_BEANSTALK_NAME: DesafioUsuario
       ELASTIC_BEANSTALK_ENV_NAME: DesafioUsuario-env
-      S3_ELASTIC_BEANSTALK: s3://elasticbeanstalk-sa-east-1-${{ secrets.AWS_ACCOUNT_ID }}
+      ELASTIC_BEANSTALK: elasticbeanstalk-sa-east-1-${{ secrets.AWS_ACCOUNT_ID }}
 
     steps:
       - name: Download do artefato
@@ -75,7 +75,7 @@ jobs:
 
       - name: Upload do artefato para o Artifact no S3
         run: |
-          aws s3 cp "${{ env.ARTIFACT_FILE }}" ${{ env.S3_ELASTIC_BEANSTALK }}/${{ env.ARTIFACT_PATH }}
+          aws s3 cp "${{ env.ARTIFACT_FILE }}" s3://${{ env.ELASTIC_BEANSTALK }}/${{ env.ARTIFACT_PATH }}
 
       - name: Criar uma nova versão
         run: >
