@@ -69,7 +69,7 @@ jobs:
 
       - name: Criar aplicação
         run: >
-          aws elasticbeanstalk create-application-version --application-name $ELASTIC_BEANSTALK_NAME--version-label $VERSION_LABEL 
+          aws elasticbeanstalk create-application-version --application-name $ELASTIC_BEANSTALK_NAME --version-label $VERSION_LABEL
           --source-bundle S3Bucket="elasticbeanstalk-sa-east-1-${{ secrets.AWS_ACCOUNT_ID }}",S3Key="artifact/usuario/app.jar"
 
       - name: Implantar aplicação
