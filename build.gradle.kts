@@ -18,8 +18,7 @@ dependencies {
     implementation("io.quarkus:quarkus-rest")
     implementation("io.quarkus:quarkus-rest-jackson")
     implementation("io.quarkus:quarkus-hibernate-orm-panache")
-
-    // Mysql
+    implementation("io.quarkus:quarkus-hibernate-validator")
     implementation("io.quarkus:quarkus-jdbc-mysql")
 
     // H2 Database
@@ -33,8 +32,9 @@ dependencies {
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
 
-    // Validação Request
-    implementation("io.quarkus:quarkus-hibernate-validator")
+    // Geral
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
+    implementation("software.amazon.awssdk:secretsmanager:2.31.26")
 }
 
 group = "desafio.com"
