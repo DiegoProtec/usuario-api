@@ -55,7 +55,7 @@ jobs:
     needs: build
 
     env:
-      S3_ELASTIC_BEANSTALK: s3://elasticbeanstalk-${{ env.REGIAO }}-${{ secrets.AWS_ACCOUNT_ID }}
+      S3_ELASTIC_BEANSTALK: s3://elasticbeanstalk-sa-east-1-${{ secrets.AWS_ACCOUNT_ID }}
       ELASTIC_BEANSTALK_NAME: DesafioUsuario
       ELASTIC_BEANSTALK_ENV_NAME: DesafioUsuario-env
       VERSION_LABEL: ${{ github.sha }}
@@ -92,7 +92,7 @@ jobs:
             --version-label ${{ env.VERSION_LABEL }}
 
       - name: Aguardar a implantação
-        run: >-
+        run: >-2
           aws elasticbeanstalk wait environment-updated
             --application-name ${{ env.ELASTIC_BEANSTALK_NAME }}
             --environment-name ${{ env.ELASTIC_BEANSTALK_ENV_NAME }}
