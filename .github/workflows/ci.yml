@@ -13,10 +13,10 @@ env:
   REGIAO: sa-east-1
   ELASTIC_BEANSTALK_NAME: DesafioUsuario
   ELASTIC_BEANSTALK_ENV_NAME: DesafioUsuario-env
-  S3_ELASTIC_BEANSTALK: s3://elasticbeanstalk-${{ env.REGIAO }}-${{ secrets.AWS_ACCOUNT_ID }}
+  S3_ELASTIC_BEANSTALK: s3://elasticbeanstalk-sa-east-1-${{ secrets.AWS_ACCOUNT_ID }}
   ARTIFACT_PATH: artifact/usuario-api
   ARTIFACT_FILE: deploy.zip
-  ARTIFACT_FULL_PATH: ${{ env.ARTIFACT_PATH }}/${{ env.ARTIFACT_FILE }}
+  ARTIFACT_FULL_PATH: artifact/usuario-api/deploy.zip
   DATASOURCE_PASSWORD: ${{ secrets.DATASOURCE_PASSWORD }}
 
 jobs:
