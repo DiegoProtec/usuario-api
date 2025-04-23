@@ -42,7 +42,7 @@ jobs:
 
       - name: Compacta artefato de deploy
         run: |
-          zip -r ${{ env.ARTIFACT_FILE }} ./build/quarkus-app/quarkus-run.jar ./Procfile
+          zip -r ${{ env.ARTIFACT_FILE }} build/quarkus-app/quarkus-run.jar Procfile
 
       - name: Upload do artefato
         uses: actions/upload-artifact@v4
