@@ -13,11 +13,11 @@ import java.util.Optional;
 
 public class AmazonSecretsManagerConfig {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(AmazonSecretsManagerConfig.class);
+
     public static final String DESAFIODB_SECRET = "desafiodb-secret";
     public static final String REGIAO_NAME = "sa-east-1";
     public static final Region REGIAO = Region.of(REGIAO_NAME);
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(AmazonSecretsManagerConfig.class);
 
     public static Optional<DesafioDB>  getSecretDesafioDb() {
         GetSecretValueResponse getSecretValueResponse;
