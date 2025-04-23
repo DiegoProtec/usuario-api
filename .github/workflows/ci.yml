@@ -55,10 +55,10 @@ jobs:
     needs: build
 
     env:
-      S3_ELASTIC_BEANSTALK: s3://elasticbeanstalk-sa-east-1-${{ secrets.AWS_ACCOUNT_ID }}
+      VERSION_LABEL: ${{ github.sha }}
       ELASTIC_BEANSTALK_NAME: DesafioUsuario
       ELASTIC_BEANSTALK_ENV_NAME: DesafioUsuario-env
-      VERSION_LABEL: ${{ github.sha }}
+      S3_ELASTIC_BEANSTALK: s3://elasticbeanstalk-${{ env.REGIAO }}-${{ secrets.AWS_ACCOUNT_ID }}
 
     steps:
       - name: Download do artefato
@@ -78,21 +78,21 @@ jobs:
           aws s3 cp "${{ env.ARTIFACT_FILE }}" ${{ env.S3_ELASTIC_BEANSTALK }}/${{ env.ARTIFACT_PATH }}
 
       - name: Criar uma nova versão
-        run: >-2
+        run: >
           aws elasticbeanstalk create-application-version
-            --application-name ${{ env.ELASTIC_BEANSTALK_NAME }}
-            --source-bundle S3Bucket="${{ env.S3_ELASTIC_BEANSTALK }}",S3Key="${{ env.ARTIFACT_FULL_PATH }}"
-            --version-label ${{ env.VERSION_LABEL }}
+          --application-name ${{ env.ELASTIC_BEANSTALK_NAME }}
+          --source-bundle S3Bucket="${{ env.S3_ELASTIC_BEANSTALK }}",S3Key="${{ env.ARTIFACT_FULL_PATH }}"
+          --version-label ${{ env.VERSION_LABEL }}
 
       - name: Implantar a nova versão
-        run: >-2
+        run: >
           aws elasticbeanstalk update-environment
-            --application-name ${{ env.ELASTIC_BEANSTALK_NAME }}
-            --environment-name ${{ env.ELASTIC_BEANSTALK_ENV_NAME }}
-            --version-label ${{ env.VERSION_LABEL }}
+          --application-name ${{ env.ELASTIC_BEANSTALK_NAME }}
+          --environment-name ${{ env.ELASTIC_BEANSTALK_ENV_NAME }}
+          --version-label ${{ env.VERSION_LABEL }}
 
       - name: Aguardar a implantação
-        run: >-2
+        run: >
           aws elasticbeanstalk wait environment-updated
-            --application-name ${{ env.ELASTIC_BEANSTALK_NAME }}
-            --environment-name ${{ env.ELASTIC_BEANSTALK_ENV_NAME }}
+          --application-name ${{ env.ELASTIC_BEANSTALK_NAME }}
+          --environment-name ${{ env.ELASTIC_BEANSTALK_ENV_NAME }}
