@@ -1,1 +1,1 @@
-web: ./set_permissions.sh && java -jar build/quarkus-app/quarkus-run.jar
+web: java -jar build/quarkus-app/quarkus-run.jar

@@ -44,15 +44,7 @@ jobs:
         run: |
           # Cria o arquivo ZIP com os arquivos necessários
           zip -r deploy.zip build/quarkus-app/quarkus-run.jar Procfile deploy/
-
-          # Cria um script para definir permissões
-          echo '#!/bin/bash' > set_permissions.sh
-          echo 'chmod +x build/quarkus-app/quarkus-run.jar' >> set_permissions.sh
-          echo 'chmod +x Procfile' >> set_permissions.sh
-          echo 'chmod -R 755 deploy/' >> set_permissions.sh
-
-          # Adiciona o script ao arquivo ZIP
-          zip deploy.zip set_permissions.sh  
+          chmod -R 755 deploy.zip
 
       - name: Upload do artefato
         uses: actions/upload-artifact@v4
