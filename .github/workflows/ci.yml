@@ -44,7 +44,6 @@ jobs:
         run: |
           # Cria o arquivo ZIP com os arquivos necessários
           zip -r deploy.zip build Procfile deploy/
-          chmod -R 755 deploy.zip
 
       - name: Upload do artefato
         uses: actions/upload-artifact@v4
