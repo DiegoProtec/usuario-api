@@ -1,6 +1,6 @@
-package com.desafio.usuario.exception.constraint;
+package com.desafio.exception.constraint;
 
-import com.desafio.usuario.exception.ValidationError;
+import com.desafio.exception.ValidationError;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.core.Response;

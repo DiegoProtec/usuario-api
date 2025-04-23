@@ -1,6 +1,6 @@
-package com.desafio.usuario.exception.negocio;
+package com.desafio.exception.negocio;
 
-import com.desafio.usuario.exception.ErrorResponse;
+import com.desafio.exception.ErrorResponse;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;

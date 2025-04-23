@@ -1,4 +1,4 @@
-package com.desafio.usuario.exception.error;
+package com.desafio.exception.error;
 
 public class InternalServerError extends RuntimeException {
 

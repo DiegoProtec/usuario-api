@@ -1,4 +1,4 @@
-package com.desafio.usuario.exception.negocio;
+package com.desafio.exception.negocio;
 
 public class NegocioException extends RuntimeException {
 

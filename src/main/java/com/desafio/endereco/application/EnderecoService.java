@@ -4,7 +4,7 @@ import com.desafio.endereco.domain.Endereco;
 import com.desafio.endereco.domain.EnderecoMapper;
 import com.desafio.endereco.domain.EnderecoVo;
 import com.desafio.endereco.repository.EnderecoRepository;
-import com.desafio.usuario.exception.negocio.NegocioException;
+import com.desafio.exception.negocio.NegocioException;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;

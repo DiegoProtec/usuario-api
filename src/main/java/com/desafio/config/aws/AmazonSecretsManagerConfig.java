@@ -1,7 +1,7 @@
 package com.desafio.config.aws;
 
 import com.desafio.config.aws.secrets.DesafioDB;
-import com.desafio.usuario.exception.error.InternalServerError;
+import com.desafio.exception.error.InternalServerError;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

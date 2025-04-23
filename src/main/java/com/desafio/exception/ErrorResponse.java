@@ -1,4 +1,4 @@
-package com.desafio.usuario.exception;
+package com.desafio.exception;
 
 public record ErrorResponse(String error, String message) {
 }

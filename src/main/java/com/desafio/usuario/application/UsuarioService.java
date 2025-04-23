@@ -6,13 +6,12 @@ import com.desafio.endereco.domain.EnderecoVo;
 import com.desafio.usuario.domain.Usuario;
 import com.desafio.usuario.domain.UsuarioMapper;
 import com.desafio.usuario.domain.UsuarioVo;
-import com.desafio.usuario.exception.email.EmailUnicoException;
-import com.desafio.usuario.exception.negocio.NegocioException;
+import com.desafio.exception.email.EmailUnicoException;
+import com.desafio.exception.negocio.NegocioException;
 import com.desafio.usuario.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
-import jakarta.ws.rs.NotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;
