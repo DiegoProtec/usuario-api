@@ -1,8 +1,8 @@
 package com.desafio.config.aws;
 
 import com.desafio.config.aws.secrets.DesafioDB;
-import com.desafio.exception.error.InternalServerError;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.ws.rs.InternalServerErrorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import software.amazon.awssdk.core.exception.SdkClientException;
@@ -32,7 +32,7 @@ public class AmazonSecretsManagerConfig {
         try {
             getSecretValueResponse = client.getSecretValue(getSecretValueRequest);
         } catch (SdkClientException e) {
-            throw new InternalServerError("Error ao recuperar secret: {}", e.getCause());
+            throw new InternalServerErrorException("Error ao recuperar secret: {}", e.getCause());
         }
         return jsonToDesafioDB(getSecretValueResponse.secretString());
     }

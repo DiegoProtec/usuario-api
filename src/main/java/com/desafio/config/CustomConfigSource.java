@@ -13,7 +13,13 @@ public class CustomConfigSource implements ConfigSource {
 
     public CustomConfigSource() {
         var secret = AmazonSecretsManagerConfig.getSecretDesafioDb();
-        secret.ifPresent(desafioDB -> properties.put("DATASOURCE_PASSWORD", desafioDB.password()));
+        secret.ifPresent(desafioDB -> {
+            properties.put("DATASOURCE_USERNAME", desafioDB.username());
+            properties.put("DATASOURCE_PASSWORD", desafioDB.password());
+            properties.put("DATASOURCE_HOST", desafioDB.host());
+            properties.put("DATASOURCE_PORT", desafioDB.port());
+            properties.put("DATASOURCE_SCHEME", desafioDB.database());
+        });
     }
 
     @Override
